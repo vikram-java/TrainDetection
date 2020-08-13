@@ -1,0 +1,50 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:replace="fragments/header :: header">
+</head>
+<body>
+	<h5 align="center">
+		Train RFID Data &nbsp;&nbsp;&nbsp; <span><a href="/">Home</a></span>
+	</h5>
+
+	<hr>
+	<table id="example" class="table table-striped table-bordered"
+		style="width: 100%">
+		<thead>
+			<tr>
+				<th>Sr.No</th>
+				<th>Tag</th>
+				<th>Carriage</th>
+				<th>Antenna</th>
+				<th>RSSI</th>
+				<th>Total Count</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="getData , custStat : ${TrainTagList}">
+				<td th:text="${custStat.count}"></td>
+				<td th:text="${getData.tag}"></td>
+				<td th:text="${getData.carriage}"></td>
+				<td th:text="${getData.antenna}"></td>
+				<td th:text="${getData.rssi}"></td>
+				<td th:if="${getData.tagCount==4}"><img alt="alert"
+					src="/icons/green.png"> <span th:text="${getData.tagCount}"></span></td>
+				<td th:if="${getData.tagCount==3}"><img alt="alert"
+					src="/icons/red.png"> <span th:text="${getData.tagCount}"></span></td>
+				<td th:if="${getData.tagCount==2}"><img alt="alert"
+					src="/icons/yellow.png"> <span th:text="${getData.tagCount}"></span></td>
+
+			</tr>
+		<tfoot>
+			<tr>
+				<th>Sr.No</th>
+				<th>Tag</th>
+				<th>Carriage</th>
+				<th>Antenna</th>
+				<th>RSSI</th>
+				<th>Total Count</th>
+			</tr>
+		</tfoot>
+		</tbody>
+	</table>
+</body>
+<div lang="en" th:replace="fragments/footer :: footer"></div>
